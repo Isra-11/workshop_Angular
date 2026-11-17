@@ -1,0 +1,30 @@
+
+<div class="notification">
+
+  <div class="icon">
+    🔔
+  </div>
+
+  <div class="content">
+
+    <h2>Zone de notifications</h2>
+
+    <p>
+      Vous avez {{ notifications.length }} nouvelles notifications.
+    </p>
+
+    <button (click)="afficherNotifications()">
+      {{ afficher ? 'Masquer les notifications' : 'Afficher les notifications' }}
+    </button>
+
+    @if (afficher) {
+      <ul>
+        @for (n of notifications; track $index) {
+          <li>{{ n }}</li>
+        }
+      </ul>
+    }
+
+  </div>
+
+</div>
