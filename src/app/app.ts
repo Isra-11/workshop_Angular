@@ -5,10 +5,11 @@ import { FriendsList } from './components/friends-list/friends-list';
 import { Header } from './components/header/header';
 import { Notification } from './components/notification/notification';
 import { Profile } from './components/profile/profile';
+import { ConferenceList } from './components/conference-list/conference-list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Navbar,FriendsList,Header,Notification,Profile],
+  imports: [RouterOutlet,Navbar,FriendsList,Header,Notification,Profile,ConferenceList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

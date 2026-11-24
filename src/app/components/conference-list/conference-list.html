@@ -1,0 +1,36 @@
+<section class="section-card conf-section" style="--accent: #0f766e; --accent-soft: #e0f7f5">
+    <div class="section-body">
+        <div class="conf-header">
+            <div class="section-icon">#</div>
+                <div>
+                    <h2>Liste des conférences à venir</h2>
+                    <p class="hint">Cliquez sur une conférence pour afficher ses détails.</p>
+                </div>
+            </div>
+
+            <!-- Two-way data binding : la saisie met à jour searchTerm et la liste se filtre -->
+            <input class="search" type="text" placeholder="Taper le titre de la conférence"/>
+            <div class="grid">
+            @for(conf of conferences; track conf.id) {<!--ici on track par tous lobjet ou par un attribut(conf.id)-->
+                @if(conf.date>today) {
+                    <article class="conf-card" >
+                    <!-- Pipe uppercase : affichage en majuscules sans modifier la donnée -->
+                    <h3>{{conf.title | uppercase}}</h3>
+                    <!-- Pipe date : formatage de la date -->
+                    <p><strong>Date: {{conf.date | date:'dd/MM/yyyy'}}</strong> </p>
+                    <p><strong>Lieu :</strong> {{conf.place}}</p>
+                    <p><strong>Places restantes : {{conf.maxParticipants - conf.nbParticipants}}</strong></p>
+                    <p class="details"></p>
+                    <p class="details">Participants : {{conf.nbParticipants}}/{{conf.maxParticipants}}</p>
+                    
+                    @let placesRestantes = conf.maxParticipants - conf.nbParticipants;
+                    <button class="btn" [ngClass]="{'btn-available': placesRestantes > 10, 'btn-low': placesRestantes < 10 && placesRestantes > 0, 'btn-full': placesRestantes === 0 }"> S'inscrire</button>
+                    </article>
+               }
+            }
+            @empty {
+            <!-- Aucune conférence enregistrée -->
+            <p class="empty">Aucune conférence n'est enregistrée pour le moment.</p>            }
+        </div>
+    </div>
+</section>
